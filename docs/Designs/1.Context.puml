@@ -1,0 +1,37 @@
+@startuml User-AMDAX-context
+ 
+' !include ../C4-PlantUML/C4_Context.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+!define ICONS https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/
+ 
+!include ICONS/font-awesome-5/users.puml
+!include ICONS/font-awesome-5/user_tie.puml
+!include ICONS/material/contact_phone.puml
+ 
+' LAYOUT_AS_SKETCH()
+' LAYOUT_LEFT_RIGHT()
+LAYOUT_WITH_LEGEND()
+ 
+Person_Ext(user, "Users", "Who use the API service to upload & download from BlobStorage", "users")
+
+Boundary(new, "File service"){
+
+  System(sys, "File Service", "Providing Upload/Download service.")
+
+  Boundary(az, "External services"){
+    System_Ext(b2c, "AZ B2C", "Do Authentication for AMDAX Users.")
+    System_Ext(storage, "Storage", "Azure Blob Storage/Local file storage")
+
+    Rel_D(sys, b2c, "Get Auth Info")
+    Rel_D(sys, storage, "Read/Write")
+  }
+  
+  Rel_R(user, sys, "Upload file")
+  Rel_R(user, sys, "Download file")
+  Rel_R(user, sys, "Exploring file/Nice2Have")
+}
+ 
+' Person_Ext(manager, "Manager", "Makes a decision from statistics provided by CLOVA AiCall", "user_tie")
+' Rel(manager, amdax, "Retrives statistics from")
+
+@enduml

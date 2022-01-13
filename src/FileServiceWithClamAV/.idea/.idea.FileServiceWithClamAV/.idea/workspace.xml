@@ -11,6 +11,13 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/a9fdf6d90bb14c699cc4a461bc88f9b07600/3b/75dd6bf6/FakeJwtBearerBearerValueType.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d1351532aa9b4ab21d2065055bed4c74c24d688fed06c3f932d18577be18140/ScopesRequiredHttpContextExtensions.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="22wdl4Wi57gnpKb899IY4OEl6dj" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -20,6 +27,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File" value="PUML" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected=".NET Launch Settings Profile.UploadService">
@@ -62,7 +70,10 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1640752734137</updated>
-      <workItem from="1640752740348" duration="1292000" />
+      <workItem from="1640752740348" duration="8445000" />
+      <workItem from="1641802058373" duration="790000" />
+      <workItem from="1641804537979" duration="5925000" />
+      <workItem from="1641978344286" duration="7740000" />
     </task>
     <servers />
   </component>

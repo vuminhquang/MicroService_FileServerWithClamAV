@@ -1,0 +1,26 @@
+@startuml component-eva
+ 
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+!define ICONS https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/
+ 
+!include ICONS/govicons/user_suit.puml
+!include ICONS/font-awesome-5/user_tie.puml
+!include ICONS/material/dialer_sip.puml
+ 
+' LAYOUT_AS_SKETCH()
+LAYOUT_WITH_LEGEND()
+
+System_Ext(storage, "Storage", "Azure Blob Storage/Local file storage")
+Container_Ext(gateway, "Gateway", "envoy", "Provides UI for interacting with AMDAX.")
+'Container_Ext(onboardservice, "Onboarding Service", "Micro-Services Block", "Onboarding Service, store information on users and contracts")
+
+Container_Boundary(uploadingservice, "Uploading Service") {
+    Component(eva_auth, "Authen/Author Component", "ASP.NET Core Middleware", "Verifying JWT from AZ B2C for authentication")
+    Component(uploadingcontroller, "Uploading Controller", "REST Controller", "Allows users to store files into storage.")       
+    Rel(uploadingcontroller, eva_auth, "Verify JWT")
+}
+
+Rel(gateway, uploadingcontroller, "Send User Order")
+Rel_R(uploadingcontroller, storage, "Upload")
+
+@enduml

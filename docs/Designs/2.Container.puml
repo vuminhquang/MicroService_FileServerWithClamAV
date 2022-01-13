@@ -1,0 +1,32 @@
+@startuml container-user-trading
+ 
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+!define ICONS https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/
+ 
+!include ICONS/font-awesome-5/user_tie.puml
+ 
+' LAYOUT_AS_SKETCH()
+' LAYOUT_LEFT_RIGHT()
+LAYOUT_WITH_LEGEND()
+ 
+Person_Ext(user, "Users", "Who use the API service to upload & download from BlobStorage", "users")
+
+System_Ext(b2c, "AZ B2C", "Do Authentication for AMDAX Users.")
+System_Ext(storage, "Storage", "Azure Blob Storage/Local file storage")
+
+Boundary(sys, "File Service"){
+  Container(gateway, "Gateway", "envoy", "Unify under services into one.")
+  Container(uploadingservice, "Uploading Service", "Micro-Services Block", "Uploading Service, store files received from users to Storage")
+  Container(downloadingservice, "Downloading Service", "Micro-Services Block", "Downloading Service, get files from Storage and transfers to users")
+}
+
+Rel(uploadingservice, b2c, "Authentication", "REST API call")
+Rel(downloadingservice, b2c, "Authentication", "REST API call")
+Rel(gateway, uploadingservice, "Upload", "REST API call")
+Rel(gateway, downloadingservice, "Download", "REST API call") 
+Rel(downloadingservice, storage, "Reads from", "HTTPS") 
+Rel(uploadingservice, storage, "Writes to", "HTTPS")
+Rel_R(user, gateway, "Send upload order", "HTTPS")
+Rel_R(user, gateway, "Send download order", "HTTPS") 
+
+@enduml
